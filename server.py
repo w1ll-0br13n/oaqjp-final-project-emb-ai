@@ -16,6 +16,10 @@ def emotionDetector():
     # Call the emotion detection function
     emotions = emotion_detector(text_to_analyse)
     
+    # Check if dominant_emotion is None (error case)
+    if emotions['dominant_emotion'] is None:
+        return jsonify({"error": "Invalid text! Please try again!"}), 400
+    
     # Format response string as requested
     response_str = (f"For the given statement, the system response is "
                     f"'anger': {emotions['anger']}, 'disgust': {emotions['disgust']}, "
